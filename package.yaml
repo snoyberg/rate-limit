@@ -1,0 +1,35 @@
+name:                rate-limit
+version:             0.1.0.0
+
+dependencies:
+  - base >= 4.7 && < 5
+  - async
+  - stm
+  - safe-exceptions
+  - clock
+
+library:
+  source-dirs:      src
+  exposed-modules:  RateLimit
+
+executables:
+  shasumweb:
+    source-dirs:    app
+    main:           shasumweb.hs
+    dependencies:
+      - typed-process
+      - http-conduit
+      - say
+      - text
+      - bytestring
+      - stm-chans
+      - rate-limit
+    ghc-options:    -threaded
+
+tests:
+  spec:
+    source-dirs:      test
+    main:             Spec.hs
+    dependencies:
+      - hspec
+      - rate-limit
